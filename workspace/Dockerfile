@@ -92,6 +92,27 @@ RUN echo "" >> ~/.bashrc && \
 	echo "" >> ~/.bashrc
 
 ###########################################################################
+# Oh My Zsh
+###########################################################################
+
+USER root
+
+ARG INSTALL_ZSH=false
+
+RUN if [ ${INSTALL_ZSH} = true ]; then \
+    apt-get -y update \
+    && apt-get -y install zsh wget \
+    && wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh \
+    && curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -o ~/install.sh \
+    && bash ~/install.sh \
+    && rm ~/install.sh \
+    # 在.zshrc首行加入载入.bashrc，以便加载.bashrc中的配置成功，若仍可在.zshrc后覆盖.bashrc中的配置
+    && sed -i '1isource ~/.bashrc' ~/.zshrc \
+    # 屏蔽 shopt 命令，此命令在zsh中不支持
+    && sed -i "s/shopt/# shopt/g" ~/.bashrc \
+;fi
+
+###########################################################################
 # Composer:
 ###########################################################################
 
