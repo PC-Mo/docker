@@ -505,6 +505,7 @@ ARG INSTALL_LARAVEL_INSTALLER=false
 RUN if [ ${INSTALL_LARAVEL_INSTALLER} = true ]; then \
     # Install the Laravel Installer
 	composer global require "laravel/installer" \
+    && ln -s ~/.composer/vendor/bin/laravel /usr/bin/laravel \
 ;fi
 
 ###########################################################################
