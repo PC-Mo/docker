@@ -196,6 +196,33 @@ RUN if [ ${INSTALL_DRUSH} = true ]; then \
 ;fi
 
 ###########################################################################
+# SSH2:
+###########################################################################
+
+USER root
+
+ARG INSTALL_SSH2=false
+
+RUN if [ ${INSTALL_SSH2} = true ]; then \
+  # Install the PHP SSH2 extension
+  apt-get -y install libssh2-1-dev php${LARADOCK_PHP_VERSION}-ssh2 \
+;fi
+
+###########################################################################
+# SOAP:
+###########################################################################
+
+USER root
+
+ARG INSTALL_GMP=false
+ARG PHP_VERSION=${PHP_VERSION}
+
+RUN if [ ${INSTALL_GMP} = true ]; then \
+  # Install the PHP SOAP extension
+  apt-get -y install php${PHP_VERSION}-gmp \
+;fi
+
+###########################################################################
 # SOAP:
 ###########################################################################
 
