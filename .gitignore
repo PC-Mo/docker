@@ -7,3 +7,10 @@
 /jenkins/jenkins_home
 .github
 .vscode
+
+/logstash/pipeline/*.conf
+/logstash/config/pipelines.yml
+
+/nginx/ssl/*.crt
+/nginx/ssl/*.key
+/nginx/ssl/*.csr
